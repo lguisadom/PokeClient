@@ -9,7 +9,7 @@
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="/index">Pokemon</a>
+			<a class="navbar-brand" href="/index"><img src="images/pokeapi.png" class="img-nav"/></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -28,18 +28,33 @@
 	</header>
 
 	<div class="container">
-		<p th:text="'Cantidad de pokemones: ' + ${listaPokemones.count}" />
-		<p th:text="'Previous offset: ' + ${listaPokemones.previousOffset}" />
-		<p th:text="'Previous limit: ' + ${listaPokemones.previousLimit}" />
-		<p th:text="'Next offset: ' + ${listaPokemones.nextOffset}" />
-		<p th:text="'Next limit: ' + ${listaPokemones.nextLimit}" />
+		<p th:text="'Pokemones totales: ' + ${listaPokemones.count}" />
+
+		<div class="pagination-container">
+			<nav aria-label="Page navigation example">
+				<ul class="pagination justify-content-center">
+					<li class="page-item"><a class="page-link"
+						th:if="${listaPokemones.previous ne null}"
+						th:href="'/listaPokemones?url=' + ${recurso} + '&offset=0&limit=20'">Inicio</a></li>
+					<li class="page-item"><a class="page-link"
+						th:if="${listaPokemones.previous ne null}"
+						th:href="'/listaPokemones?url=' + ${recurso} + '&offset=' + ${listaPokemones.previousOffset} + '&limit=' + ${listaPokemones.previousLimit}">Anterior</a></li>
+					<li class="page-item"><a class="page-link"
+						th:if="${listaPokemones.next ne null}"
+						th:href="'/listaPokemones?url=' + ${recurso} + '&offset=' + ${listaPokemones.nextOffset} + '&limit=' + ${listaPokemones.nextLimit}">Siguiente</a></li>
+						<li class="page-item"><a class="page-link"
+						th:if="${listaPokemones.next ne null}"
+						th:href="'/listaPokemones?url=' + ${recurso} + '&offset=800&limit=7'">Final</a></li>
+				</ul>
+			</nav>
+		</div>
 
 		<div class="table-responsive">
 			<table
 				class="table table-hovered table-striped table-bordered table-hover table-sm">
 				<thead class="thead-dark">
 					<tr>
-						<th>#</th>
+						<!-- th>#</th-->
 						<th>Nombre</th>
 						<th>Detalle</th>
 					</tr>
@@ -47,7 +62,7 @@
 				<tbody>
 					<th:block th:each="pokemon, state : ${listaPokemones.results}">
 						<tr>
-							<td th:text="${state.count}"></td>
+							<!--td th:text="${state.count}"></td-->
 							<td th:text="${pokemon.name}"></td>
 							<td><a
 								th:href="'/detallePokemon?url=' + ${pokemon.url} + '&name=' + ${pokemon.name}">Ver
@@ -59,12 +74,19 @@
 
 			<div class="pagination-container">
 				<nav aria-label="Page navigation example">
-					<ul class="pagination">
-						<li class="page-item"><a class="page-link" th:if="${listaPokemones.previous ne null}" th:href="'/listaPokemones?url=' + ${recurso} + '&offset=' + ${listaPokemones.previousOffset} + '&limit=' + ${listaPokemones.previousLimit}">Anterior</a></li>
-						<!-- li class="page-item"><a class="page-link" href="#">1</a></li>
-						<li class="page-item"><a class="page-link" href="#">2</a></li>
-						<li class="page-item"><a class="page-link" href="#">3</a></li-->
-						<li class="page-item"><a class="page-link" th:if="listaPokemones.next ne null" th:href="'/listaPokemones?url=' + ${recurso} + '&offset=' + ${listaPokemones.nextOffset} + '&limit=' + ${listaPokemones.nextLimit}">Siguiente</a></li>
+					<ul class="pagination justify-content-center">
+						<li class="page-item"><a class="page-link"
+							th:if="${listaPokemones.previous ne null}"
+							th:href="'/listaPokemones?url=' + ${recurso} + '&offset=0&limit=20'">Inicio</a></li>
+						<li class="page-item"><a class="page-link"
+							th:if="${listaPokemones.previous ne null}"
+							th:href="'/listaPokemones?url=' + ${recurso} + '&offset=' + ${listaPokemones.previousOffset} + '&limit=' + ${listaPokemones.previousLimit}">Anterior</a></li>
+						<li class="page-item"><a class="page-link"
+							th:if="${listaPokemones.next ne null}"
+							th:href="'/listaPokemones?url=' + ${recurso} + '&offset=' + ${listaPokemones.nextOffset} + '&limit=' + ${listaPokemones.nextLimit}">Siguiente</a></li>
+							<li class="page-item"><a class="page-link"
+							th:if="${listaPokemones.next ne null}"
+							th:href="'/listaPokemones?url=' + ${recurso} + '&offset=800&limit=7'">Final</a></li>
 					</ul>
 				</nav>
 			</div>

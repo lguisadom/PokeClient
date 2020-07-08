@@ -9,7 +9,8 @@
 <body>
 	<header>
 		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="/index">Pokemon</a>
+			<a class="navbar-brand" href="/index"><img
+				src="images/pokeapi.png" class="img-nav" /></a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse"
 				data-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -27,8 +28,10 @@
 		</nav>
 	</header>
 
+
 	<div class="container">
-		<table
+		<p><a href="/listaPokemones?url=pokemon-species">Atrás</a></p>
+		<table id="tableDetail"
 			class="table table-hovered table-striped table-bordered table-hover table-sm">
 			<thead class="thead-dark">
 				<tr>
@@ -36,6 +39,31 @@
 				</tr>
 			</thead>
 			<tbody>
+				<tr>
+					<td colspan="2">
+						<img class="img-detail" th:attr="src=@{'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/' + ${detallePokemon.id} + '.png'}" />
+					</td>
+				</tr>
+				<tr>
+					<td>ID</td>
+					<td><p th:text="${detallePokemon.id}" /></td>
+				</tr>
+				<tr>
+					<td>Name</td>
+					<td><p th:text="${detallePokemon.name}" /></td>
+				</tr>
+				<tr>
+					<td>Is Baby</td>
+					<td><p th:text="${detallePokemon.is_baby}" /></td>
+				</tr>
+				<tr>
+					<td>Order</td>
+					<td><p th:text="${detallePokemon.order}" /></td>
+				</tr>
+				<tr>
+					<td>Gender rate</td>
+					<td><p th:text="${detallePokemon.gender_rate}" /></td>
+				</tr>
 				<tr>
 					<td>Felicidad base</td>
 					<td><p th:text="${detallePokemon.base_happiness}" /></td>
@@ -48,14 +76,104 @@
 					<td>Color</td>
 					<td><p th:text="${detallePokemon.color.name}" /></td>
 				</tr>
+				<tr>
+					<td>Shape</td>
+					<td><p th:text="${detallePokemon.shape.name}" /></td>
+				</tr>
 			</tbody>
 		</table>
-	</div>
 
-	<footer class="footer">
-		<div class="text-center">
-			Luis Alberto Guisado Mena © 2020
+		<br>
+		<div class="table-responsive">
+			<p class="text-center">Pokedex numbers</p>
+			<table
+				class="table table-hovered table-striped table-bordered table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th>Entry number</th>
+						<th>pokedex</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="pokedex: ${detallePokemon.pokedex_numbers}">
+						<tr>
+							<td th:text="${pokedex.entry_number}"></td>
+							<td th:text="${pokedex.pokedex.name}"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
 		</div>
+
+		<br>
+		<div class="table-responsive">
+			<p class="text-center">Egg Groups</p>
+			<table
+				class="table table-hovered table-striped table-bordered table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th>Nombre</th>
+						<th>URL</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="egg_group: ${detallePokemon.egg_groups}">
+						<tr>
+							<td th:text="${egg_group.name}"></td>
+							<td th:text="${egg_group.url}"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+
+		<br>
+		<div class="table-responsive">
+			<p class="text-center">Flavor Text Entries</p>
+			<table
+				class="table table-hovered table-striped table-bordered table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th>Flavor Text</th>
+						<th>Language</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="entrie: ${detallePokemon.flavor_text_entries}">
+						<tr>
+							<td th:text="${entrie.flavor_text}"></td>
+							<td th:text="${entrie.language.name}"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+
+		<br>
+		<div class="table-responsive">
+			<p class="text-center">Flavor Text Entries</p>
+			<table
+				class="table table-hovered table-striped table-bordered table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th>Flavor Text</th>
+						<th>Language</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="entrie: ${detallePokemon.flavor_text_entries}">
+						<tr>
+							<td th:text="${entrie.flavor_text}"></td>
+							<td th:text="${entrie.language.name}"></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
+		</div>
+	</div>
+	
+	<footer class="footer">
+		<div class="text-center">Luis Alberto Guisado Mena © 2020</div>
 	</footer>
 
 	<script src="js/jquery-3.5.1.slim.min.js"></script>

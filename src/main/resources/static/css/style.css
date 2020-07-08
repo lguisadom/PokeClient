@@ -9,3 +9,19 @@
 .container {
     margin-top: 50px;
 }
+
+img.img-nav {
+    height: 50px;
+}
+
+td {
+    text-align: center;
+}
+
+#tableDetail td:nth-child(2n + 1) {
+    font-weight: bold;
+}
+
+.img-detail {
+	height: 150px;
+}
