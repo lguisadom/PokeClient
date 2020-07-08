@@ -80,6 +80,11 @@
 					<td>Shape</td>
 					<td><p th:text="${detallePokemon.shape.name}" /></td>
 				</tr>
+				<tr>
+					<td colspan="2"><a
+								th:href="'/cadenaEvolucion?url=' + ${detallePokemon.evolution_chain.url}">Ver
+									Cadena de evolución</a></td>
+				</tr>
 			</tbody>
 		</table>
 

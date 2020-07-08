@@ -13,6 +13,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.lagm.dto.EvolutionChainResponse;
 import com.lagm.dto.PokemonDetailResponse;
 import com.lagm.dto.PokemonListResponse;
 
@@ -66,6 +67,27 @@ public class PokemonProxy implements IPokemonProxy {
 
 		LOGGER.info(responseEntity.getBody());
 		response = gson.fromJson(responseEntity.getBody(), PokemonDetailResponse.class);
+
+		return response;
+	}
+	
+	@Override
+	public EvolutionChainResponse cadenaEvolucion(String url) {
+		EvolutionChainResponse response = null;
+		Gson gson = new GsonBuilder().serializeNulls().create();
+
+		// Configuración SSL
+		CloseableHttpClient httpClient = HttpClients.custom().setSSLHostnameVerifier(new NoopHostnameVerifier())
+				.build();
+		HttpComponentsClientHttpRequestFactory requestFactory = new HttpComponentsClientHttpRequestFactory();
+		requestFactory.setHttpClient(httpClient);
+
+		// Rest template
+		RestTemplate restTemplate = new RestTemplate(requestFactory);
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+
+		LOGGER.info(responseEntity.getBody());
+		response = gson.fromJson(responseEntity.getBody(), EvolutionChainResponse.class);
 
 		return response;
 	}

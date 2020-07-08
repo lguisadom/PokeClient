@@ -25,3 +25,11 @@ td {
 .img-detail {
 	height: 150px;
 }
+
+.table td, .table th {
+	vertical-align : middle !important;
+}
+
+#tableDetail p {
+	margin: 0px;
+}
