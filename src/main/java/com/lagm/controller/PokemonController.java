@@ -32,10 +32,8 @@ public class PokemonController {
 	}
 	
 	@GetMapping("/detallePokemon")
-	public String detallePokemon(@RequestParam(name="url", required=true) String url, 
-			@RequestParam(name="name", required=true) String name, Model model) {
+	public String detallePokemon(@RequestParam(name="url", required=true) String url, Model model) {
 		PokemonDetailResponse response = pokemonService.detallePokemon(url);
-		model.addAttribute("nombre", name);
 		model.addAttribute("detallePokemon", response);
 
 		return "detalle-pokemon";
