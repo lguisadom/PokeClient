@@ -1,0 +1,11 @@
+.footer {
+	display: none;
+	bottom: 0;
+    width: 100%;
+    background: #ECECEC;
+    padding: 20px 0px;
+}
+
+.container {
+    margin-top: 50px;
+}

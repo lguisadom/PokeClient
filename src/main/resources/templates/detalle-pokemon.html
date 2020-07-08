@@ -28,13 +28,30 @@
 	</header>
 
 	<div class="container">
-		<p class="text-center">
-			<a class="btn btn-primary"
-			href="/listaPokemones?url=https://pokeapi.co/api/v2/pokemon-species">Ver
-			pokemones</a>
-		</p>
+		<table
+			class="table table-hovered table-striped table-bordered table-hover table-sm">
+			<thead class="thead-dark">
+				<tr>
+					<th colspan="2"><p class="text-center" th:text="${nombre}" /></th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>Felicidad base</td>
+					<td><p th:text="${detallePokemon.base_happiness}" /></td>
+				</tr>
+				<tr>
+					<td>Tasa de captura</td>
+					<td><p th:text="${detallePokemon.capture_rate}" /></td>
+				</tr>
+				<tr>
+					<td>Color</td>
+					<td><p th:text="${detallePokemon.color.name}" /></td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
-	
+
 	<footer class="footer">
 		<div class="text-center">
 			Luis Alberto Guisado Mena © 2020

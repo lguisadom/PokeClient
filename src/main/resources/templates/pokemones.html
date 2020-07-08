@@ -28,17 +28,35 @@
 	</header>
 
 	<div class="container">
-		<p class="text-center">
-			<a class="btn btn-primary"
-			href="/listaPokemones?url=https://pokeapi.co/api/v2/pokemon-species">Ver
-			pokemones</a>
-		</p>
-	</div>
-	
-	<footer class="footer">
-		<div class="text-center">
-			Luis Alberto Guisado Mena © 2020
+		<p th:text="'Cantidad de pokemones: ' + ${listaPokemones.count}" />
+
+		<div class="table-responsive">
+			<table
+				class="table table-hovered table-striped table-bordered table-hover table-sm">
+				<thead class="thead-dark">
+					<tr>
+						<th>#</th>
+						<th>Nombre</th>
+						<th>Detalle</th>
+					</tr>
+				</thead>
+				<tbody>
+					<th:block th:each="pokemon, state : ${listaPokemones.results}">
+						<tr>
+							<td th:text="${state.count}"></td>
+							<td th:text="${pokemon.name}"></td>
+							<td><a
+								th:href="'/detallePokemon?url=' + ${pokemon.url} + '&name=' + ${pokemon.name}">Ver
+									detalle</a></td>
+						</tr>
+					</th:block>
+				</tbody>
+			</table>
 		</div>
+	</div>
+
+	<footer class="footer">
+		<div class="text-center">Luis Alberto Guisado Mena © 2020</div>
 	</footer>
 
 	<script src="js/jquery-3.5.1.slim.min.js"></script>
