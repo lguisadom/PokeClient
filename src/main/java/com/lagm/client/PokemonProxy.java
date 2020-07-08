@@ -5,6 +5,7 @@ import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
 import org.springframework.stereotype.Component;
@@ -19,9 +20,14 @@ import com.lagm.dto.PokemonListResponse;
 public class PokemonProxy implements IPokemonProxy {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(PokemonProxy.class);
+	
+	@Value("${service.url}")
+	private String wsUrl;
 
 	@Override
 	public PokemonListResponse listaPokemones(String url) {
+		LOGGER.info("url: \'" + url + "\'");
+		
 		PokemonListResponse response = null;
 		Gson gson = new GsonBuilder().serializeNulls().create();
 

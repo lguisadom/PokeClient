@@ -8,6 +8,6 @@ import lombok.Data;
 public class PokemonListResponse {
 	private int count;
 	private String next;
-	private String previus;
+	private String previous;
 	private List<Pokemon> results;
 }
