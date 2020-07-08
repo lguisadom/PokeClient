@@ -25,8 +25,10 @@ public class PokemonProxy implements IPokemonProxy {
 	private String wsUrl;
 
 	@Override
-	public PokemonListResponse listaPokemones(String url) {
-		LOGGER.info("url: \'" + url + "\'");
+	public PokemonListResponse listaPokemones(String url, String offset, String limit) {
+		LOGGER.info("wsUrl: {}, url: {}, offset: {}, limit: {}", url, offset, limit);
+		String completeUrl = wsUrl + url + ("?offset=" + offset) + "&" + ("limit=" + limit);
+		LOGGER.info("completeUrl: {}", completeUrl);
 		
 		PokemonListResponse response = null;
 		Gson gson = new GsonBuilder().serializeNulls().create();
@@ -39,7 +41,7 @@ public class PokemonProxy implements IPokemonProxy {
 
 		// Rest template
 		RestTemplate restTemplate = new RestTemplate(requestFactory);
-		ResponseEntity<String> responseEntity = restTemplate.getForEntity(url, String.class);
+		ResponseEntity<String> responseEntity = restTemplate.getForEntity(completeUrl, String.class);
 
 		LOGGER.info(responseEntity.getBody());
 		response = gson.fromJson(responseEntity.getBody(), PokemonListResponse.class);

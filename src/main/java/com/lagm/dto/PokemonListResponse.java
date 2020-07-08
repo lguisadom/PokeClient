@@ -10,4 +10,9 @@ public class PokemonListResponse {
 	private String next;
 	private String previous;
 	private List<Pokemon> results;
+	
+	private String previousOffset;
+	private String previousLimit;
+	private String nextOffset;
+	private String nextLimit;
 }

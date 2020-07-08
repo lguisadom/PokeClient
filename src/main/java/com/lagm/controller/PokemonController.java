@@ -21,9 +21,13 @@ public class PokemonController {
 	}
 	
 	@GetMapping("/listaPokemones")
-	public String listaPokemones(@RequestParam(name="url", required=true) String url, Model model) {
-		PokemonListResponse response = pokemonService.listaPokemones(url);
+	public String listaPokemones(@RequestParam(name="url", required=true) String url, 
+			@RequestParam(name="offset", required=false) String offset,
+			@RequestParam(name="limit", required=false) String limit,
+			Model model) {
+		PokemonListResponse response = pokemonService.listaPokemones(url, offset, limit);
 		model.addAttribute("listaPokemones", response);
+		model.addAttribute("recurso", url);
 		return "pokemones";
 	}
 	
